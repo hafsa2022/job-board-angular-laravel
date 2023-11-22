@@ -4,7 +4,6 @@ namespace App\Services;
 use Illuminate\Http\Request;
 use App\Services\Interfaces\IUserService;
 use App\Repositories\Interfaces\IUserRepository;
-use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -48,14 +47,14 @@ class UserService implements IUserService
         return $user;
     }
 
-    protected function respondWithToken($token)
-    {
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
-        ]);
-    }
+    // protected function respondWithToken($token)
+    // {
+    //     return response()->json([
+    //         'access_token' => $token,
+    //         'token_type' => 'bearer',
+    //         'expires_in' => auth()->factory()->getTTL() * 60
+    //     ]);
+    // }
 
     public function getUser(Request $request)
     {

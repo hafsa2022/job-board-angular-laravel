@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('description');
             // $table->string('industry');
             $table->text('image');
-            $table->string('website');
+            $table->string('website')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->foreign('user_id')

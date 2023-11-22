@@ -5,21 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Job extends Model
+class Profile extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'title',
-        'description',
-        'type',
-        'salary',
-        'start_date',
-        'expiration_date',
-        'is_active',
+        'username',
+        'email',
+        'phone_number',
+        'position',
+        'image',
+        'resume',
         'city',
         'country',
-        'category',
-        'company_id',
         'user_id'
+
     ];
 }

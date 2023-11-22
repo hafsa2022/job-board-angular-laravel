@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\JobController;
+use App\Http\Controllers\CompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +29,33 @@ Route::controller(UserController::class)->group(function () {
         Route::post('signup','addUser');
 
     });
+
+Route::controller(ProfileController::class)->group(function () {
+
+        Route::post('getprofile','getProfile');
+
+        Route::get('getallprofiles','getAllProfiles');
+
+        Route:: post('getprofiles','getProfiles');
+
+        Route::post('addprofile','addProfile');
+
+        Route::post('updateprofile', 'updateProfile');
+
+    });
+
+Route::controller(JobController::class)->group(function () {
+
+        Route::post('addjob','addJob');
+
+        Route::post('updatejob','updateJob');
+
+        Route::get('getalljobs','getAllJobs');
+});
+
+Route::controller(CompanyController::class)->group(function () {
+
+        Route::post('addcompany','addCompany');
+
+        Route::post('updatecompany','updateCompany');
+});

@@ -17,20 +17,21 @@ return new class extends Migration
 	        $table->id();
             $table->string("title");
             $table->string("description");
+            $table->string("type");
             $table->string("salary");
-            $table->date("posted_date");
+            $table->date("start_date")->nullable();
             $table->date("expiration_date")->nullable();
-            $table->string("is_active");
-            $table->unsignedBigInteger('category_id');
+            $table->string("is_active")->nullable();
+            $table->string('city');
+            $table->string('country');
+            $table->string('category');
             $table->unsignedBigInteger('company_id');
-            $table->unsignedBigInteger('location_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
-            $table->foreign("category_id")
-            ->references('id')->on('categories')->onDelete('cascade');
             $table->foreign("company_id")
             ->references('id')->on('companies')->onDelete('cascade');
-            $table->foreign("location_id")
-            ->references('id')->on('locations')->onDelete('cascade');
+            $table->foreign("user_id")
+            ->references('id')->on('users')->onDelete('cascade');
         });
     }
 
