@@ -23,19 +23,19 @@ class ProfileController extends Controller
     public function updateProfile(Request $request)
     {
         $profile = $this->profileService->updateProfile($request);
-        return response()->json(['profileDataUpdated'=> $profile]);
+        return response()->json(['profile'=> $profile]);
     }
 
     public function getProfile(Request $request)
     {
-        // $profile = $this->profileService->getProfile($request);
-        // return $profile;
+        $profile = $this->profileService->getProfile($request);
+        return response()->json(['profile'=> $profile]);
     }
 
     public function getAllProfiles()
     {
         $profiles = $this->profileService->getAllProfiles();
-        return $profiles;
+        return response()->json(['profiles'=> $profiles]);
     }
 
     // public function getProfiles(Request $request){

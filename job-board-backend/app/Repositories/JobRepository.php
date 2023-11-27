@@ -55,8 +55,10 @@ class JobRepository implements IJobRepository
             'country' => $request->input('country'),
             'start_date' => $request->input('startDate')
             ]);
-
-        return $job;
+            
+        $jobs = DB::table('jobs')
+                ->get();
+        return $jobs;
 
     }
 
@@ -67,9 +69,32 @@ class JobRepository implements IJobRepository
         return $jobs;
     }
 
-    // public function getJob(Request $request)
-    // {
-    //     $profiles = $this->getAllProfiles();
-    // }
+    public function getLastJobs()
+    {
+        $lastJobs = Job::latest()->take(5)->get();
+        return $lastJobs;
+    }
+
+    public function searchJobs(Request $request)
+    {
+        $query = DB::table('jobs');
+
+        if ($request->type != 'undefined' && $request->type != '') {
+            $query->where('type', $request->type);
+        }
+        if ($request->category != 'undefined' && $request->category != '') {
+            $query->where('category', $request->category);
+        }
+        if ($request->city != 'undefined' && $request->city != '') {
+            $query->where('city', $request->city);
+        }
+        if ($request->country != 'undefined' && $request->country != '') {
+            $query->where('country', $request->country);
+        }
+
+        $jobs = $query->get();
+        return $jobs;
+
+    }
 }
 ?>

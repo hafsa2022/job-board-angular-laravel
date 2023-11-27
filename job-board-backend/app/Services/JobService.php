@@ -20,6 +20,7 @@ class JobService implements IJobService
             'title' => 'required',
             'description' => 'required',
             'type' => 'required',
+            'category' => 'required',
             'salary' => 'required',
             'city' => 'required',
             'country'=>'required',
@@ -36,7 +37,7 @@ class JobService implements IJobService
         $job->category = $request->category;
         $job->start_date = $request->startDate;
         $job->company_id = $request->companyId;
-        $job->user_id=$request->userId;
+        $job->user_id = $request->userId;
 
         $job = $this->repository->addJob($job);
 
@@ -54,21 +55,26 @@ class JobService implements IJobService
             'country' => 'required',
         ]);
 
-        $job = $this->repository->updateJob($request);
+        $jobs = $this->repository->updateJob($request);
 
-        return $job;
+        return $jobs;
     }
 
     public function getAllJobs()
     {
-
         $jobs = $this->repository->getAllJobs();
         return $jobs;
     }
 
-    public function getJobs(Request $request)
+    public function getLastJobs()
     {
-        $jobs = $this->repository->getJobs($request);
+        $jobs = $this->repository->getLastJobs();
+        return $jobs;
+    }
+
+    public function searchJobs(Request $request)
+    {
+        $jobs = $this->repository->searchJobs($request);
         return $jobs;
     }
 

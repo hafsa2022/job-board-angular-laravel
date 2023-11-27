@@ -12,4 +12,8 @@ interface IJobService
 
     public function getAllJobs();
 
+    public function getLastJobs();
+
+    public function searchJobs(Request $request);
+
 }

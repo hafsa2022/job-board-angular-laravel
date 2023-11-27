@@ -10,4 +10,6 @@ interface IUserRepository
     public function getUser(Request $request);
 
     public function AddUser(User $user);
+
+    public function getAllUsers();
 }

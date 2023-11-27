@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
-
+use Illuminate\Support\Facades\DB;
 
 
 class UserRepository implements IUserRepository
@@ -48,5 +48,13 @@ class UserRepository implements IUserRepository
         return $searchedUser;
 
     }
+
+    public function getAllUsers(){
+
+        $users = DB::table('users')
+                    ->get();
+        return $users;
+    }
+
 }
 ?>

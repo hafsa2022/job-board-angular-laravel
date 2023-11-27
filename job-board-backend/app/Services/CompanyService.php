@@ -19,7 +19,6 @@ class CompanyService implements ICompanyService
         $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'logo' => 'required'
         ]);
 
         $company = new Company();
@@ -27,12 +26,13 @@ class CompanyService implements ICompanyService
         $company->description = $request->description;
 
         if($request->file('logo')){
+            $path = 'storage/images/companiesLogos';
             $completeName = $request->file('logo')->getClientOriginalName();
             $fileName = pathinfo($completeName,PATHINFO_FILENAME);
             $extension = $request->file('logo')->getClientOriginalExtension();
             $compPic= str_replace(' ','_',$fileName).'_'.time().'.'.$extension;
-            $imagePath = $request->file('logo')->storeAs('public/images/companiesLogos',$compPic);
-            $company->image = $imagePath ;
+            $request->logo->move($path,$compPic);
+            $company->image = $compPic ;
         }
 
         $company->website = $request->websiteUrl;
@@ -55,7 +55,15 @@ class CompanyService implements ICompanyService
         $company = $this->repository->updateCompany($request);
 
         return response()->json([
-            "comapnyUpdated" => $company
+            "companyUpdated" => $company
+        ]);
+    }
+
+    public function getAllCompanies()
+    {
+        $companies=$this->repository->getAllCompanies();
+        return response()->json([
+            "companies" => $companies
         ]);
     }
 

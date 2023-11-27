@@ -73,4 +73,10 @@ class UserService implements IUserService
         ]);
     }
 
+    public function getAllUsers()
+    {
+        $users = $this->repository->getAllUsers();
+        return $users;
+    }
+
 }

@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description');
+            $table->text('description');
             // $table->string('industry');
-            $table->text('image');
+            $table->text('image')->nullable();
             $table->string('website')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();

@@ -30,46 +30,65 @@ class ProfileRepository implements IProfileRepository
         $profile = Profile::where('email', $request->email)->first();
 
         if($request->file('image')){
+            $path = 'storage/images/profiles';
             $completeName = $request->file('image')->getClientOriginalName();
             $fileName = pathinfo($completeName,PATHINFO_FILENAME);
             $extension = $request->file('image')->getClientOriginalExtension();
             $compPic= str_replace(' ','_',$fileName).'_'.time().'.'.$extension;
-            $imagePath = $request->file('image')->storeAs('public/images/profiles',$compPic);
+            $request->image->move($path,$compPic);
             // dd($path);
         }
 
         if($request->file('resume')){
+            $path = 'storage/resumes';
             $completeName = $request->file('resume')->getClientOriginalName();
             $fileName = pathinfo($completeName,PATHINFO_FILENAME);
             $extension = $request->file('resume')->getClientOriginalExtension();
-            $compPic= str_replace(' ','_',$fileName).'_'.time().'.'.$extension;
-            $resumePath = $request->file('resume')->storeAs('public/resumes',$compPic);
-        }
-
-        $profile->update([
+            $compRes= str_replace(' ','_',$fileName).'_'.time().'.'.$extension;
+            $request->resume->move($path,$compRes);
+            $profile->update([
             'username' => $request->input('fullName'),
             'phone_number' => $request->input('phoneNumber'),
-            'position'=>$request->input('position'),
+            'position' => $request->input('position'),
+            'number_of_exper' => $request->input('number_of_exper'),
             'city' => $request->input('city'),
             'country' => $request->input('country'),
-            'image' => $imagePath,
-            'resume' => $resumePath,
+            'image' => $compPic,
+            'resume' => $compRes,
+            'about' => $request->about,
+            'skills'=> $request->skills
             ]);
+        }else{
+             $profile->update([
+            'username' => $request->input('fullName'),
+            'phone_number' => $request->input('phoneNumber'),
+            'position' => $request->input('position'),
+            'number_of_exper' => $request->input('number_of_exper'),
+            'city' => $request->input('city'),
+            'country' => $request->input('country'),
+            'image' => $compPic,
+            'about' => $request->about,
+            'skills'=> $request->skills
+            ]);
+
+        }
+
+
 
         return $profile;
 
     }
 
-    // public function getProfile(Request $request)
-    // {
-    //     // $searchedUser =  User::where('email', $request->email)->first();
-    //     // return $searchedUser;
+    public function getProfile(Request $request)
+    {
+        $searchedUser =  Profile::where('user_id', $request->userId)->first();
+        return $searchedUser;
 
-    // }
+    }
 
     public function getAllProfiles(){
 
-        $usersIds = DB::table('Users')
+        $usersIds = DB::table('users')
                     ->select('id')
                     ->where('users.role', 'Job Seeker')
                     ->get()
@@ -82,10 +101,5 @@ class ProfileRepository implements IProfileRepository
 
         return $profiles;
     }
-
-    // public function getProfiles(Request $request)
-    // {
-    //     $profiles = $this->getAllProfiles();
-    // }
 }
 ?>

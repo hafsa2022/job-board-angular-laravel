@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ApplicationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,8 @@ Route::controller(UserController::class)->group(function () {
         Route::post('login','getUser');
 
         Route::post('signup','addUser');
+
+        Route::get('getallusers','getAllUsers');
 
     });
 
@@ -51,6 +54,10 @@ Route::controller(JobController::class)->group(function () {
         Route::post('updatejob','updateJob');
 
         Route::get('getalljobs','getAllJobs');
+
+        Route::get('getlastjobs','getLastJobs');
+
+        Route::post('searchjobs','searchJobs');
 });
 
 Route::controller(CompanyController::class)->group(function () {
@@ -58,4 +65,14 @@ Route::controller(CompanyController::class)->group(function () {
         Route::post('addcompany','addCompany');
 
         Route::post('updatecompany','updateCompany');
+
+        Route::get('getallcompanies','getAllCompanies');
 });
+
+Route::controller(ApplicationController::class)->group(function () {
+
+        Route::post('applyjob','addApplication');
+
+        Route::get('getallapplications','getAllApplications');
+});
+

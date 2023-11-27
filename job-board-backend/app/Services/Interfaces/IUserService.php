@@ -10,5 +10,7 @@ interface IUserService
 
     public function getUser(Request $request);
 
+    public function getAllUsers();
+
 
 }

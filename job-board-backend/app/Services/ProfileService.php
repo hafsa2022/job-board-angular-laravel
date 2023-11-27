@@ -54,11 +54,11 @@ class ProfileService implements IProfileService
         return $profiles;
     }
 
-    // public function getProfiles(Request $request)
-    // {
-    //     $profiles = $this->repository->getProfiles($request);
-    //     return $profiles;
-    // }
+    public function getProfile(Request $request)
+    {
+        $profile = $this->repository->getProfile($request);
+        return $profile;
+    }
 
 }
 

@@ -12,7 +12,7 @@ interface IProfileService
 
     public function getAllProfiles();
 
-    // public function getProfiles(Request $request);
+    public function getProfile(Request $request);
 
 
 }

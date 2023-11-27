@@ -18,12 +18,15 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('App\Repositories\Interfaces\IJobRepository', 'App\Repositories\JobRepository');
         $this->app->bind('App\Repositories\Interfaces\IProfileRepository', 'App\Repositories\ProfileRepository');
         $this->app->bind('App\Repositories\Interfaces\ICompanyRepository', 'App\Repositories\CompanyRepository');
+        $this->app->bind('App\Repositories\Interfaces\IApplicationRepository', 'App\Repositories\ApplicationRepository');
 
         // Services
         $this->app->bind('App\Services\Interfaces\IUserService', 'App\Services\UserService');
         $this->app->bind('App\Services\Interfaces\IJobService', 'App\Services\JobService');
         $this->app->bind('App\Services\Interfaces\IProfileService', 'App\Services\ProfileService');
         $this->app->bind('App\Services\Interfaces\ICompanyService', 'App\Services\CompanyService');
+        $this->app->bind('App\Services\Interfaces\IApplicationService', 'App\Services\ApplicationService');
+
     }
 
     /**

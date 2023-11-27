@@ -22,14 +22,26 @@ class JobController extends Controller
 
     public function updateJob(Request $request)
     {
-        $job = $this->jobService->updateJob($request);
-        return response()->json(['jobDataUpdated'=> $job]);
+        $jobs = $this->jobService->updateJob($request);
+        return response()->json(['jobs'=> $jobs]);
     }
 
     public function getAllJobs()
     {
         $jobs = $this->jobService->getAllJobs();
-        return $jobs;
+        return response()->json(['jobs'=> $jobs]);
+    }
+
+    public function getLastJobs()
+    {
+        $jobs = $this->jobService->getLastJobs();
+        return response()->json(['jobs'=> $jobs]);
+    }
+
+    public function searchJobs(Request $request)
+    {
+        $jobs = $this->jobService->searchJobs($request);
+        return response()->json(['jobs'=> $jobs]);
     }
 
 }

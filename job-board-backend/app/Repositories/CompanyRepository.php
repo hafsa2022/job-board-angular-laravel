@@ -28,22 +28,30 @@ class CompanyRepository implements ICompanyRepository
     {
         $company = Company::where('id', $request->id)->first();
 
-        if($request->file('image')){
-            $completeName = $request->file('image')->getClientOriginalName();
+        if($request->file('logo')){
+            $path = 'storage/images/companiesLogos';
+            $completeName = $request->file('logo')->getClientOriginalName();
             $fileName = pathinfo($completeName,PATHINFO_FILENAME);
-            $extension = $request->file('image')->getClientOriginalExtension();
+            $extension = $request->file('logo')->getClientOriginalExtension();
             $compPic= str_replace(' ','_',$fileName).'_'.time().'.'.$extension;
-            $imagePath = $request->file('image')->storeAs('public/images/companiesLogos',$compPic);
+            $request->logo->move($path,$compPic);
             // dd($path);
         }
 
         $company->update([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
-            'image' => $imagePath,
+            'image' => $compPic,
             ]);
 
         return $company;
 
+    }
+
+    public function getAllCompanies()
+    {
+        $companies = DB::table('companies')
+                    ->get();
+        return $companies;
     }
 }

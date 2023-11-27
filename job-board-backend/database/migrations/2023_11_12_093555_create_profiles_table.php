@@ -19,10 +19,13 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone_number')->nullable();
             $table->string('position')->nullable();
+            $table->string('number_of_exper')->nullable();
             $table->text('image')->nullable();
             $table->text('resume')->nullable()->nullable();
             $table->string('city')->nullable();
             $table->string('country')->nullable();
+            $table->text('about')->nullable();
+            $table->string('skills')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->foreign('user_id')

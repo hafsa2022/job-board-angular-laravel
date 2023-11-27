@@ -13,4 +13,8 @@ interface IJobRepository
     public function updateJob(Request $request);
 
     public function getAllJobs();
+
+    public function getLastJobs();
+
+    public function searchJobs(Request $request);
 }

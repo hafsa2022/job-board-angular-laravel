@@ -15,10 +15,14 @@ return new class extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
-            $table->date('application_date');
+            $table->string('username');
+            $table->string('email');
+            $table->string('phone_number')->nullable();
+            $table->string('number_of_exper');
+            $table->text('resume');
+            $table->text('cover_lettre')->nullable();
             $table->unsignedBigInteger('job_id');
             $table->unsignedBigInteger('user_id');
-            // $table->string('stauts');
             $table->timestamps();
             $table->foreign('job_id')
             ->references('id')->on('jobs')->onDelete('cascade');

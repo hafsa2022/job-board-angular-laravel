@@ -27,5 +27,10 @@ class UserController extends Controller
         return $user;
     }
 
+    public function getAllUsers()
+    {
+        $users = $this->userService->getAllUsers();
+        return response()->json(['users'=> $users]);
+    }
 
 }

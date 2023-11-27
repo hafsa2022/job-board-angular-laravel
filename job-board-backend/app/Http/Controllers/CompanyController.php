@@ -26,10 +26,10 @@ class CompanyController extends Controller
         return response()->json(['jobDataUpdated'=> $company]);
     }
 
-    // public function getAllJobs()
-    // {
-    //     $jobs = $this->jobService->getAllJobs();
-    //     return $jobs;
-    // }
+    public function getAllCompanies()
+    {
+        $companies = $this->companyService->getAllCompanies();
+        return $companies;
+    }
 
 }

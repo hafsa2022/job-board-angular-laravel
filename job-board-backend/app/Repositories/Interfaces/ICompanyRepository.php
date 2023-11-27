@@ -11,4 +11,6 @@ interface ICompanyRepository
 
     public function updateCompany(Request $request);
 
+    public function getAllCompanies();
+
 }
