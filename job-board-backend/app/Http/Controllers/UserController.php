@@ -33,4 +33,10 @@ class UserController extends Controller
         return response()->json(['users'=> $users]);
     }
 
+    public function updateUserName(Request $request)
+    {
+        $user = $this->userService->updateUserName($request);
+        return response()->json(['user'=> $user]);
+    }
+
 }

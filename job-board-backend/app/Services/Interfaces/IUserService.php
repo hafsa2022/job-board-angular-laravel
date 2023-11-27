@@ -12,5 +12,7 @@ interface IUserService
 
     public function getAllUsers();
 
+    public function updateUserName(Request $request);
+
 
 }

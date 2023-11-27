@@ -56,5 +56,14 @@ class UserRepository implements IUserRepository
         return $users;
     }
 
+    public function updateUserName(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+        $user->update([
+            'username' => $request->fullName
+        ]);
+        return $user;
+    }
+
 }
 ?>

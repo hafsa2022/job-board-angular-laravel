@@ -31,6 +31,8 @@ Route::controller(UserController::class)->group(function () {
 
         Route::get('getallusers','getAllUsers');
 
+        Route::post('updateusername','updateUserName');
+
     });
 
 Route::controller(ProfileController::class)->group(function () {

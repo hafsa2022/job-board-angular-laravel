@@ -79,4 +79,14 @@ class UserService implements IUserService
         return $users;
     }
 
+    public function updateUserName(Request $request)
+    {
+        $request->validate([
+            'fullName' => 'required',
+            'email'=>'required',
+        ]);
+        $user = $this->repository->updateUserName($request);
+        return $user;
+    }
+
 }
